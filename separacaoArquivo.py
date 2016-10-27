@@ -137,36 +137,6 @@ else:
     print("Por fim tamanho de Validacao 1 eh ")
     print(c1_validation_size)
 
-print("--------------------------")
-#Teste
-
-aux = round(test_diff/c1_test_size)
-aux = aux-1
-c1_test_aux =  np.copy(c1_test)
-for x in range(aux):
-    c1_test_aux = np.concatenate((c1_test_aux,c1_test),axis=0)
-
-c1_test_size = c1_test_aux.shape[0]
-print("tamanho de Teste 1 eh ")
-print(c1_test_size)
-c0_test_size = c0_test.shape[0]
-print("tamanho de Teste 0 eh ")
-print(c0_test_size)
-test_diff = c0_test_size - c1_test_size;
-print(" Teste diferenca eh ")
-print(test_diff)
-if(test_diff>0):
-    c1_test_aux2 = c1_test_aux[:test_diff]
-    c1_test = np.concatenate((c1_test_aux2,c1_test_aux),axis=0)
-    c1_test_size = c1_test.shape[0]
-    print("Por fim tamanho de Teste 1 eh ")
-    print(c1_test_size)
-else:
-    c1_test = c1_test_aux
-    c1_test_size = c1_test.shape[0]
-    print("Por fim tamanho de Teste 1 eh ")
-    print(c1_test_size)
-
 
 #agora da  um shuffle
 np.random.shuffle(c1_trainning)
