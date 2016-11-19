@@ -4,7 +4,7 @@ clear
 %    Informacoes sobre a rede e os dados
 numEntradas   = 6;     % Numero de nodos de entrada
 numEscondidos = 5;     % Numero de nodos escondidos
-numSaidas     = 1;     % Numero de nodos de saida
+numSaidas     = 2;     % Numero de nodos de saida
 numTr         = 7596;   % Numero de padroes de treinamento
 numVal        = 3798;    % Numero de padroes de validacao
 numTeste      = 1961;    % Numero de padroes de teste
@@ -17,28 +17,40 @@ arquivoValidacao   = fopen('validacao.txt','r');
 arquivoTeste       = fopen('teste.txt','r');        
 
 %    Lendo arquivos e armazenando dados em matrizes
-dadosTreinamento    = fscanf(arquivoTreinamento,'%f',[(numEntradas + numSaidas), numTr])';   % Lendo arquivo de treinamento
+dadosTreinamento    = fscanf(arquivoTreinamento,'%f',[(numEntradas + 1), numTr])';   % Lendo arquivo de treinamento
 dadosTreinamento    = dadosTreinamento(randperm(size(dadosTreinamento,1)),:);
 dadosTreinamento    = dadosTreinamento';
 entradasTreinamento = dadosTreinamento(1:numEntradas, 1:numTr);
-saidasTreinamento  = dadosTreinamento((numEntradas + 1):(numEntradas + numSaidas), 1:numTr);
+saidasTreinamento   = dadosTreinamento((numEntradas + 1):(numEntradas + 1), 1:numTr);
 
-dadosValidacao      = fscanf(arquivoValidacao,'%f',[(numEntradas + numSaidas), numVal])';    % Mesmo processo para validacao
+novaSaidasTr        = abs(saidasTreinamento - 1);
+saidasTreinamento   = [novaSaidasTr; saidasTreinamento];
+
+dadosValidacao      = fscanf(arquivoValidacao,'%f',[(numEntradas + 1), numVal])';    % Mesmo processo para validacao
 dadosValidacao      = dadosValidacao(randperm(size(dadosValidacao,1)),:);
 dadosValidacao      = dadosValidacao';
 entradasValidacao   = dadosValidacao(1:numEntradas, 1:numVal);
-saidasValidacao     = dadosValidacao((numEntradas + 1):(numEntradas + numSaidas), 1:numVal);
+saidasValidacao     = dadosValidacao((numEntradas + 1):(numEntradas + 1), 1:numVal);
 
-dadosTeste          = fscanf(arquivoTeste,'%f',[(numEntradas + numSaidas), numTeste])';      % Mesmo processo para teste
+novaSaidasVal       = abs(saidasValidacao - 1);
+saidasValidacao     = [novaSaidasVal; saidasValidacao];
+
+dadosTeste          = fscanf(arquivoTeste,'%f',[(numEntradas + 1), numTeste])';      % Mesmo processo para teste
 dadosTeste          = dadosTeste(randperm(size(dadosTeste,1)),:);
 dadosTeste          = dadosTeste';
 entradasTeste       = dadosTeste(1:numEntradas, 1:numTeste);
-saidasTeste         = dadosTeste((numEntradas + 1):(numEntradas + numSaidas), 1:numTeste);
+saidasTeste         = dadosTeste((numEntradas + 1):(numEntradas + 1), 1:numTeste);
+
+novaSaidasTest      = abs(saidasTeste - 1);
+saidasTeste         = [novaSaidasTest; saidasTeste];
 
 %    Fechando arquivos
 fclose(arquivoTreinamento);
 fclose(arquivoValidacao);
 fclose(arquivoTeste);
+
+%   Adicionando ultima coluna (linha)
+
 
 %   Criando a rede (para ajuda, digite 'help newff')
 
@@ -119,4 +131,4 @@ end
 
 erroClassifTeste = 100 * (classificacoesErradas/numTeste);
 
-fprintf('Erro de classificacao para o conjunto de teste: %6.5f\n',erroClassifTeste);
+fprintf('Erro de classificacao para o conjunto de teste: %6.5f%% \n',erroClassifTeste);
