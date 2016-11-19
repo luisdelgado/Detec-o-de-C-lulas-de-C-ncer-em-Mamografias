@@ -132,3 +132,7 @@ end
 erroClassifTeste = 100 * (classificacoesErradas/numTeste);
 
 fprintf('Erro de classificacao para o conjunto de teste: %6.5f%% \n',erroClassifTeste);
+
+%    Curva ROC com valores padrões
+[x, y] = perfcurve(saidasTeste(2, :), saidasRedeTeste(2, :), 1);
+plot (x,y);
