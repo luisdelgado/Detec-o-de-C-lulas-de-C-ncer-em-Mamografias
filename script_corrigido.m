@@ -136,4 +136,4 @@ figure; plotconfusion(saidasTeste,saidasRedeTeste); % Matriz de confusao
 
 %    Curva ROC com valores padrões
 [x, y] = perfcurve(saidasTeste(2, :), saidasRedeTeste(2, :), 1);
-figure; plot (x,y);
+figure; plot (x,y); title('Roc Curve'); xlabel('True Positive'); ylabel('False Positive');
