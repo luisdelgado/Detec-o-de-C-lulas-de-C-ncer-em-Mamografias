@@ -17,27 +17,21 @@ arquivoValidacao   = fopen('validacao.txt','r');
 arquivoTeste       = fopen('teste.txt','r');        
 
 %    Lendo arquivos e armazenando dados em matrizes
-dadosTreinamento    = fscanf(arquivoTreinamento,'%f',[(numEntradas + 1), numTr])';   % Lendo arquivo de treinamento
-dadosTreinamento    = dadosTreinamento(randperm(size(dadosTreinamento,1)),:);
-dadosTreinamento    = dadosTreinamento';
+dadosTreinamento    = fscanf(arquivoTreinamento,'%f',[(numEntradas + 1), numTr]);   % Lendo arquivo de treinamento
 entradasTreinamento = dadosTreinamento(1:numEntradas, 1:numTr);
 saidasTreinamento   = dadosTreinamento((numEntradas + 1):(numEntradas + 1), 1:numTr);
 
 novaSaidasTr        = abs(saidasTreinamento - 1);
 saidasTreinamento   = [novaSaidasTr; saidasTreinamento];
 
-dadosValidacao      = fscanf(arquivoValidacao,'%f',[(numEntradas + 1), numVal])';    % Mesmo processo para validacao
-dadosValidacao      = dadosValidacao(randperm(size(dadosValidacao,1)),:);
-dadosValidacao      = dadosValidacao';
+dadosValidacao      = fscanf(arquivoValidacao,'%f',[(numEntradas + 1), numVal]);    % Mesmo processo para validacao
 entradasValidacao   = dadosValidacao(1:numEntradas, 1:numVal);
 saidasValidacao     = dadosValidacao((numEntradas + 1):(numEntradas + 1), 1:numVal);
 
 novaSaidasVal       = abs(saidasValidacao - 1);
 saidasValidacao     = [novaSaidasVal; saidasValidacao];
 
-dadosTeste          = fscanf(arquivoTeste,'%f',[(numEntradas + 1), numTeste])';      % Mesmo processo para teste
-dadosTeste          = dadosTeste(randperm(size(dadosTeste,1)),:);
-dadosTeste          = dadosTeste';
+dadosTeste          = fscanf(arquivoTeste,'%f',[(numEntradas + 1), numTeste]);      % Mesmo processo para teste
 entradasTeste       = dadosTeste(1:numEntradas, 1:numTeste);
 saidasTeste         = dadosTeste((numEntradas + 1):(numEntradas + 1), 1:numTeste);
 
