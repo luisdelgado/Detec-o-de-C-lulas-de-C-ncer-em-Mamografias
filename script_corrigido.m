@@ -128,6 +128,7 @@ erroClassifTeste = 100 * (classificacoesErradas/numTeste);
 fprintf('Erro de classificacao para o conjunto de teste: %6.5f%% \n',erroClassifTeste);
 figure; plotconfusion(saidasTeste,saidasRedeTeste); % Matriz de confusao
 
-%    Curva ROC com valores padrões
-[x, y] = perfcurve(saidasTeste(2, :), saidasRedeTeste(2, :), 1);
+%    Curva ROC com valores padrÃµes
+[x, y, t, auc] = perfcurve(saidasTeste(2, :), saidasRedeTeste(2, :), 1);
+fprintf('Area under ROC curve %6.5f \n',auc);
 figure; plot (x,y); title('Roc Curve'); xlabel('True Positive'); ylabel('False Positive');
