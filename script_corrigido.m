@@ -136,4 +136,4 @@ figure; plot (x,y); title('Roc Curve'); xlabel('True Positive'); ylabel('False P
 print('roc','-dpng');
 
 %    Provavelmente salva o que tá no console em um .txt
-%diary('filename')
+%diary('teste')
