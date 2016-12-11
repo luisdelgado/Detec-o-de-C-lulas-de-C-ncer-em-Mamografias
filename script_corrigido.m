@@ -132,7 +132,7 @@ print('matriz', '-dpng')
 %    Curva ROC com valores padrÃµes
 [x, y, t, auc] = perfcurve(saidasTeste(2, :), saidasRedeTeste(2, :), 1);
 fprintf('Area under ROC curve %6.5f \n',auc);
-figure; plot (x,y); title('Roc Curve'); xlabel('True Positive'); ylabel('False Positive');
+figure; plot (x,y); title('Roc Curve'); xlabel('False Positive'); ylabel('True Positive');
 print('roc','-dpng');
 
 %    Provavelmente salva o que tá no console em um .txt
