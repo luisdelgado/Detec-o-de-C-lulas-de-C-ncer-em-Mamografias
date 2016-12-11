@@ -2,8 +2,8 @@ echo on
 clear
 
 fid = fopen('saida.txt','w');
-variacoes_Neuronios = [6,2,2];
-variacoes_Aprendizagem=[0.1 ,0.1,0.001];
+variacoes_Neuronios = [2,6,14];
+variacoes_Aprendizagem=[0.4, 0.1, 0.001];
 variacoes_Func = ['tansig','logsig'];
 variacoes_Algoritmo = ['trainoss','traingdm','trainlm'];
 
